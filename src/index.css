@@ -1,0 +1,22 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+}
+
+ul,
+li,
+ol {
+  list-style: none;
+}
+input {
+  display: block;
+}
