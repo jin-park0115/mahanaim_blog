@@ -15,7 +15,7 @@ const LoginPage = () => {
     e.preventDefault();
     try {
       const userCredential = await handleFirebaseAuth("login", email, password);
-
+      alert("로그인 되었습니다.");
       navigate("/");
     } catch (error: any) {
       switch (error.code) {
