@@ -1,8 +1,12 @@
 import styled from "styled-components";
 import logoimg from "@/assets/logo.png";
 import { Link } from "react-router-dom";
+import { useAuthStore } from "@/store/authStore";
+import MyInfoPage from "@/page/MyInfoPage";
 
 const Navbar = () => {
+  const isLoggedIn = useAuthStore((state) => state.isLoggeIn);
+
   return (
     <Nav>
       <NavWrap>
@@ -12,9 +16,15 @@ const Navbar = () => {
         <ul>
           <li>일정</li>
           <li>게시물</li>
-          <Link to="/login">
-            <li>로그인</li>
-          </Link>
+          {isLoggedIn ? (
+            <Link to="/myinfo">
+              <li>내정보</li>
+            </Link>
+          ) : (
+            <Link to="/login">
+              <li>로그인</li>
+            </Link>
+          )}
         </ul>
       </NavWrap>
     </Nav>

@@ -3,33 +3,25 @@ import LoginImg from "@/assets/로그인화면이미지.jpg";
 import { Link, useNavigate } from "react-router-dom";
 import { IoArrowBackOutline } from "react-icons/io5";
 import IconComponent from "@/components/IconComponents";
-import { auth } from "../firebase";
 import { FormEvent, useState } from "react";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { handleFirebaseAuth } from "@/utils/authUtils";
 
 const LoginPage = () => {
   const navigate = useNavigate();
-
   const [email, setEmail] = useState<string>("");
   const [password, setPassWord] = useState<string>("");
 
   const handleLogin = async (e: FormEvent) => {
     e.preventDefault();
     try {
-      const userCredential = await signInWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
-      const user = userCredential.user;
-      console.log(user);
-      if (user) {
-        const token = await user.getIdToken();
-      }
+      const userCredential = await handleFirebaseAuth("login", email, password);
+
       navigate("/");
     } catch (error: any) {
-      console.log(error.message);
-      alert("로그인에 실패했습니다.");
+      switch (error.code) {
+        case "auth/invalid-credential":
+          alert("이메일 혹은 비밀번호가 일치하지 않습니다.");
+      }
       setEmail("");
       setPassWord("");
     }
