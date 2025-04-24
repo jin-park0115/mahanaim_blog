@@ -14,7 +14,6 @@ import { Link } from "react-router-dom";
 
 interface Schedule {
   id: string;
-  title: string;
   date: Timestamp;
   time: string;
   location: string;
