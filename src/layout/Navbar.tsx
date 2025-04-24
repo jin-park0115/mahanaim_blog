@@ -14,7 +14,9 @@ const Navbar = () => {
           <img src={logoimg} alt="마하나임 로고" draggable="true" />
         </ImgBox>
         <ul>
-          <li>일정</li>
+          <li>
+            <Link to="/schedule">일정</Link>
+          </li>
           <li>게시물</li>
           {isLoggedIn ? (
             <Link to="/myinfo">
